@@ -1,0 +1,79 @@
+{
+  "739523fbf6b6d3e6241256aa42c51cf25cbe9aa1f69d25d8ebc0582501f8528a": {
+    "image_hash_hex": "0x739523fbf6b6d3e6241256aa42c51cf25cbe9aa1f69d25d8ebc0582501f8528a",
+    "encoding_hash_hex": "0x67b146360d41409e754e5e77b0e7257a9de144cfd4dc63a1bf793f226e197c06",
+    "match_url": "https://twitter.com/dev_verified/status/178923401928374",
+    "similarity_score_bps": 9850,
+    "timestamp": 1788522392,
+    "recorded_by": "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    "tx_hash": "8beddbc62e040799efc0b334e9801a6358813b219e2a480593c55f18f5db98fc",
+    "contract_address": "0xF2E246BB76DF876Cef8b38ae84130F4F55De395b",
+    "block_number": 2
+  },
+  "21dea60ca89bdc6f8634ef8a47218f1e076733c852ffffd87efa06a79afe681b": {
+    "image_hash_hex": "0x21dea60ca89bdc6f8634ef8a47218f1e076733c852ffffd87efa06a79afe681b",
+    "encoding_hash_hex": "0x891995728ebf0cbf606d22d18ddf29b959d5b43302404fb7c90a0f8b850696b6",
+    "match_url": "https://denaldoai.com/",
+    "similarity_score_bps": 7832,
+    "timestamp": 1788531633,
+    "recorded_by": "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    "tx_hash": "f5bb95e59f7a978055583662a4a9847a6e33b7e42011c25e414bc90205aa80c6",
+    "contract_address": "0xF2E246BB76DF876Cef8b38ae84130F4F55De395b",
+    "block_number": 3
+  },
+  "ee8e61f209e1ac0c0c91f3076f4ca48cb873db83f84d35ac2eb643e2b284bc7c": {
+    "image_hash_hex": "0xee8e61f209e1ac0c0c91f3076f4ca48cb873db83f84d35ac2eb643e2b284bc7c",
+    "encoding_hash_hex": "0xf29e1acadaba502707574de36c09377c0304ea6d47292e00257ca58a3807dbc2",
+    "match_url": "https://m.economictimes.com/news/india/bombay-high-court-slams-vile-deepfakes-against-gadkari-orders-immediate-takedown-by-meta-x-google/articleshow/132901036.cms",
+    "similarity_score_bps": 9576,
+    "timestamp": 1788532010,
+    "recorded_by": "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    "tx_hash": "77a8f8c89678e08be5a28f849cfc18a318d224d4ce9c53bccca60967963a29ea",
+    "contract_address": "0xF2E246BB76DF876Cef8b38ae84130F4F55De395b",
+    "block_number": 4
+  },
+  "34598f15ff3f42e56e2bc1312d11de42032aa0124643e9282593a028543d1c54": {
+    "image_hash_hex": "0x34598f15ff3f42e56e2bc1312d11de42032aa0124643e9282593a028543d1c54",
+    "encoding_hash_hex": "0x76017f2eb147dea72502adf29edb3cb8c27e649b13cff442a31e83fdbad592f9",
+    "match_url": "https://elenakalis.com/water-sings-blue",
+    "similarity_score_bps": 7017,
+    "timestamp": 1788524379,
+    "recorded_by": "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    "tx_hash": "7ca334ab7e2163ec6f878be97aaeb7cf07833a8b1c61461664de0ca0286490f6",
+    "contract_address": "0xF2E246BB76DF876Cef8b38ae84130F4F55De395b",
+    "block_number": 3
+  },
+  "6850f505f91166aec278d97edf0fe55b419110ce4c35e2680c91a183b61ae55e": {
+    "image_hash_hex": "0x6850f505f91166aec278d97edf0fe55b419110ce4c35e2680c91a183b61ae55e",
+    "encoding_hash_hex": "0xab85aed52ada8745a47c2a2358da488b542276cd4930e02bade2b9ded7c8be9b",
+    "match_url": "https://x.com/CryptooIndia/status/2094662989819580528",
+    "similarity_score_bps": 9680,
+    "timestamp": 1788530902,
+    "recorded_by": "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    "tx_hash": "d63c8b8ddf7dfae0260b7848837b8e5d4eea30e1ea3659ae7ac2b98688c15f03",
+    "contract_address": "0xF2E246BB76DF876Cef8b38ae84130F4F55De395b",
+    "block_number": 2
+  },
+  "e77403b06951d6718af1fd71bd39e2893d4fff97627fb8be407fc05f8c373782": {
+    "image_hash_hex": "0xe77403b06951d6718af1fd71bd39e2893d4fff97627fb8be407fc05f8c373782",
+    "encoding_hash_hex": "0xab85aed52ada8745a47c2a2358da488b542276cd4930e02bade2b9ded7c8be9b",
+    "match_url": "https://x.com/CryptooIndia/status/2094662989819580528",
+    "similarity_score_bps": 9680,
+    "timestamp": 1788531413,
+    "recorded_by": "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    "tx_hash": "0x5f2213c4db1d20a309cf433f46f5774de555e8244e3a44d147ab6d90f909f1af",
+    "contract_address": "0xF2E246BB76DF876Cef8b38ae84130F4F55De395b",
+    "block_number": 1482931
+  },
+  "46f85f2be7111dbe8c2a14ad83d779ae299912e60da7a71d7dad737b98692ecf": {
+    "image_hash_hex": "0x46f85f2be7111dbe8c2a14ad83d779ae299912e60da7a71d7dad737b98692ecf",
+    "encoding_hash_hex": "0x48f8a92113694d9b55eda4c79b2669c13ae26dd51d67513976230cf68c5129b1",
+    "match_url": "https://en.wikipedia.org/wiki/Sundar_Pichai",
+    "similarity_score_bps": 7340,
+    "timestamp": 1788523496,
+    "recorded_by": "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    "tx_hash": "5ee952fc9fe5e599b6f9fce7ea3f595642179155514aad5e5cb4eee1ef7fddc2",
+    "contract_address": "0xF2E246BB76DF876Cef8b38ae84130F4F55De395b",
+    "block_number": 3
+  }
+}

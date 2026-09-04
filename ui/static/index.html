@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Face ID + Blockchain Verification Pipeline | Interactive Test Dashboard</title>
+  <meta name="description" content="End-to-end Biometric Face ID, Live Reverse-Image Search, and Polygon Blockchain Tamper-Evident Verification Dashboard.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand">
+        <div class="brand-logo">
+          <i class="fa-solid fa-fingerprint"></i>
+          <span class="chain-badge"><i class="fa-brands fa-ethereum"></i></span>
+        </div>
+        <div class="brand-info">
+          <h1>Face ID <span class="gradient-text">+ Blockchain</span></h1>
+          <p class="subtitle">Biometric Encoding • Live Reverse Search • On-Chain Tamper-Evident Proof</p>
+        </div>
+      </div>
+
+      <div class="header-status">
+        <button class="status-pill settings-pill" id="openSettingsBtn" title="Configure SerpApi Key for Google Lens search">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </button>
+        <div class="status-pill network-pill" id="networkStatus">
+          <span class="pulse-dot"></span>
+          <span class="network-name">Polygon Amoy Testnet</span>
+          <span class="chain-id-tag">80002</span>
+        </div>
+        <div class="status-pill contract-pill" id="contractStatus" title="Click to view contract on Explorer">
+          <i class="fa-solid fa-file-contract"></i>
+          <span class="contract-label">Contract:</span>
+          <span class="contract-address" id="headerContractAddress">0xF2E2...395b</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    
+    <!-- Top Pipeline Stepper -->
+    <section class="stepper-section">
+      <div class="stepper-container">
+        <div class="step-item" id="step1" data-step="1">
+          <div class="step-icon"><i class="fa-solid fa-face-viewfinder"></i></div>
+          <div class="step-info">
+            <span class="step-number">Stage 01</span>
+            <span class="step-title">Face Encoding</span>
+          </div>
+        </div>
+        <div class="step-line" id="line1"></div>
+
+        <div class="step-item" id="step2" data-step="2">
+          <div class="step-icon"><i class="fa-solid fa-magnifying-glass-nodes"></i></div>
+          <div class="step-info">
+            <span class="step-number">Stage 02</span>
+            <span class="step-title">Reverse Search</span>
+          </div>
+        </div>
+        <div class="step-line" id="line2"></div>
+
+        <div class="step-item" id="step3" data-step="3">
+          <div class="step-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="step-info">
+            <span class="step-number">Stage 03 & 04</span>
+            <span class="step-title">Match Verify</span>
+          </div>
+        </div>
+        <div class="step-line" id="line3"></div>
+
+        <div class="step-item" id="step5" data-step="5">
+          <div class="step-icon"><i class="fa-solid fa-cube"></i></div>
+          <div class="step-info">
+            <span class="step-number">Stage 05</span>
+            <span class="step-title">Blockchain Write</span>
+          </div>
+        </div>
+        <div class="step-line" id="line4"></div>
+
+        <div class="step-item" id="step6" data-step="6">
+          <div class="step-icon"><i class="fa-solid fa-shield-check"></i></div>
+          <div class="step-info">
+            <span class="step-number">Stage 06</span>
+            <span class="step-title">On-Chain Proof</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <div class="tab-navigation">
+      <button class="nav-tab active" data-tab="tab-pipeline">
+        <i class="fa-solid fa-play"></i> Full Pipeline Test
+      </button>
+      <button class="nav-tab" data-tab="tab-verify">
+        <i class="fa-solid fa-magnifying-glass-chart"></i> Independent On-Chain Verify
+      </button>
+      <button class="nav-tab" data-tab="tab-contract">
+        <i class="fa-solid fa-code"></i> Smart Contract (MatchRegistry.sol)
+      </button>
+    </div>
+
+    <!-- TAB 1: Full Pipeline Test -->
+    <div class="tab-content active" id="tab-pipeline">
+      <div class="dashboard-grid">
+        
+        <!-- Left Panel: Image Input & Config -->
+        <div class="glass-card panel-input">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-image"></i> 1. Select Target Photo</h3>
+            <span class="badge badge-purple">Input</span>
+          </div>
+
+          <!-- Drag and Drop Zone -->
+          <div class="upload-dropzone" id="dropzone">
+            <input type="file" id="imageFileInput" accept="image/*" class="file-input-hidden">
+            <div class="dropzone-content" id="dropzoneContent">
+              <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+              <h4>Drag & drop portrait image here</h4>
+              <p>or <span class="browse-link">browse from your computer</span></p>
+              <span class="supported-formats">PNG, JPG, JPEG, WEBP</span>
+            </div>
+            
+            <div class="preview-container" id="previewContainer" style="display: none;">
+              <canvas id="faceDetectionCanvas"></canvas>
+              <button class="btn-remove-image" id="removeImageBtn" title="Remove image">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Web URL Input Bar -->
+          <div class="url-input-bar">
+            <div class="url-field-wrap">
+              <i class="fa-solid fa-link url-icon"></i>
+              <input type="url" id="imageUrlInput" placeholder="Or paste any image URL from internet..." class="url-input">
+              <button type="button" id="loadUrlBtn" class="btn-load-url"><i class="fa-solid fa-arrow-right"></i> Load</button>
+            </div>
+          </div>
+
+          <!-- Sample Images Selector -->
+          <div class="sample-selector">
+            <label class="input-label">Or choose a pre-loaded sample:</label>
+            <div class="sample-chips" id="sampleChipsContainer">
+              <button class="sample-chip active" data-sample="sample_images/sample_face.jpg">
+                <img src="/api/samples/sample_face.jpg" alt="Sample 1" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60'">
+                <span>Sample Portrait 01</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pipeline Controls -->
+          <div class="controls-group">
+            <div class="control-item">
+              <div class="control-header">
+                <label for="thresholdRange" class="input-label">Similarity Threshold</label>
+                <span class="threshold-value" id="thresholdValueDisplay">60% (0.60)</span>
+              </div>
+              <input type="range" id="thresholdRange" min="0.40" max="0.95" step="0.05" value="0.60" class="custom-slider">
+            </div>
+
+            <button class="btn-gradient-primary btn-run-pipeline" id="runPipelineBtn">
+              <span class="btn-content">
+                <i class="fa-solid fa-bolt"></i> Run 6-Stage Pipeline
+              </span>
+              <div class="spinner-hidden" id="pipelineSpinner">
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Panel: Live Pipeline Execution Stages -->
+        <div class="glass-card panel-results">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-microchip"></i> 2. Execution Results & Biometric Telemetry</h3>
+            <div class="header-actions">
+              <span class="execution-time" id="executionTimeDisplay"><i class="fa-regular fa-clock"></i> Ready</span>
+            </div>
+          </div>
+
+          <!-- Empty State -->
+          <div class="empty-state" id="emptyState">
+            <div class="empty-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <h4>No Pipeline Run Initiated</h4>
+            <p>Upload a photo or select a sample, then click <strong>"Run 6-Stage Pipeline"</strong> to execute face encoding, live reverse search, biometric verification, and blockchain writing.</p>
+          </div>
+
+          <!-- Results Container -->
+          <div class="results-container" id="resultsContainer" style="display: none;">
+            
+            <!-- Stage 1 Card -->
+            <div class="stage-result-card" id="stage1Card">
+              <div class="stage-card-header">
+                <div class="stage-title">
+                  <span class="stage-num-badge">Stage 1</span>
+                  <h4>Face Detection & Biometric Encoding</h4>
+                </div>
+                <span class="badge badge-success"><i class="fa-solid fa-check"></i> Encoded</span>
+              </div>
+
+              <div class="stage-grid">
+                <div class="stage-crop-view">
+                  <img id="faceCropImg" src="" alt="Face Crop" class="face-crop-preview">
+                  <span class="crop-caption">Aligned Face Tensor</span>
+                </div>
+                <div class="stage-meta-grid">
+                  <div class="meta-item">
+                    <span class="meta-label">Confidence:</span>
+                    <span class="meta-val highlight" id="s1Confidence">98.50%</span>
+                  </div>
+                  <div class="meta-item">
+                    <span class="meta-label">Embedding Space:</span>
+                    <span class="meta-val" id="s1Dimensions">512-Dimensional</span>
+                  </div>
+                  <div class="meta-item full-width">
+                    <span class="meta-label">Image SHA-256:</span>
+                    <div class="hash-box">
+                      <code id="s1ImageHash">...</code>
+                      <button class="btn-copy" data-target="s1ImageHash" title="Copy Hash"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                  </div>
+                  <div class="meta-item full-width">
+                    <span class="meta-label">Embedding SHA-256:</span>
+                    <div class="hash-box">
+                      <code id="s1EmbeddingHash">...</code>
+                      <button class="btn-copy" data-target="s1EmbeddingHash" title="Copy Hash"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stage 2 Card -->
+            <div class="stage-result-card" id="stage2Card">
+              <div class="stage-card-header">
+                <div class="stage-title">
+                  <span class="stage-num-badge">Stage 2</span>
+                  <h4>Live Reverse-Image Search Candidates</h4>
+                </div>
+                <span class="badge badge-purple" id="s2CandidateCount">1 Match</span>
+              </div>
+
+              <div class="candidates-scroll-list" id="candidatesList">
+                <!-- Dynamically populated candidate cards -->
+              </div>
+            </div>
+
+            <!-- Stage 3 & 4 Card: Top Match -->
+            <div class="stage-result-card top-match-card" id="topMatchCard">
+              <div class="stage-card-header">
+                <div class="stage-title">
+                  <span class="stage-num-badge bg-gold">Stage 3 & 4</span>
+                  <h4>Top Verified Social Match</h4>
+                </div>
+                <span class="badge badge-gold"><i class="fa-solid fa-certificate"></i> Verified Match</span>
+              </div>
+
+              <div class="top-match-content" id="topMatchContent">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Stage 5 & 6 Card: Blockchain Write & Readback -->
+            <div class="stage-result-card blockchain-card" id="blockchainCard">
+              <div class="stage-card-header">
+                <div class="stage-title">
+                  <span class="stage-num-badge bg-blue">Stage 5 & 6</span>
+                  <h4>Blockchain Tamper-Evident Record</h4>
+                </div>
+                <span class="badge badge-cyan"><i class="fa-solid fa-link"></i> On-Chain Mined</span>
+              </div>
+
+              <div class="blockchain-details-grid" id="blockchainDetailsGrid">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: Independent On-Chain Verify -->
+    <div class="tab-content" id="tab-verify">
+      <div class="verify-dashboard">
+        <div class="glass-card verify-box">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-shield-halved"></i> Independent Blockchain Record Verification</h3>
+            <span class="badge badge-cyan">Replay Proof</span>
+          </div>
+          <p class="verify-desc">Query the blockchain smart contract view function directly using an image file or its SHA-256 hash to verify authenticity without running reverse search.</p>
+
+          <div class="verify-form-group">
+            <div class="verify-mode-toggle">
+              <button class="mode-btn active" id="verifyModeHash">By SHA-256 Hash</button>
+              <button class="mode-btn" id="verifyModeFile">By Image File</button>
+            </div>
+
+            <div class="verify-input-area" id="verifyHashInputArea">
+              <label class="input-label">Image SHA-256 Hash (with or without 0x):</label>
+              <div class="input-with-action">
+                <input type="text" id="verifyHashInput" class="custom-input" placeholder="e.g. 739523fbf6b6d3e6241256aa42c51cf25cbe9aa1f69d25d8ebc0582501f8528a">
+                <button class="btn-primary" id="btnExecuteVerifyHash"><i class="fa-solid fa-magnifying-glass"></i> Verify</button>
+              </div>
+            </div>
+
+            <div class="verify-input-area" id="verifyFileInputArea" style="display: none;">
+              <label class="input-label">Upload Image to verify:</label>
+              <input type="file" id="verifyFileInput" class="custom-input-file" accept="image/*">
+              <button class="btn-primary" id="btnExecuteVerifyFile"><i class="fa-solid fa-magnifying-glass"></i> Compute Hash & Verify</button>
+            </div>
+          </div>
+
+          <!-- Verification Outcome Panel -->
+          <div class="verification-outcome" id="verificationOutcome" style="display: none;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Smart Contract Info -->
+    <div class="tab-content" id="tab-contract">
+      <div class="contract-dashboard">
+        <div class="glass-card contract-info-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-file-code"></i> MatchRegistry.sol Smart Contract</h3>
+            <button class="btn-gradient-secondary btn-sm" id="btnDeployContract">
+              <i class="fa-solid fa-rocket"></i> Deploy New Contract Instance
+            </button>
+          </div>
+
+          <div class="contract-stats-row">
+            <div class="cstat-box">
+              <span class="cstat-label">Network</span>
+              <span class="cstat-val" id="cstatNetwork">Polygon Amoy Testnet</span>
+            </div>
+            <div class="cstat-box">
+              <span class="cstat-label">Chain ID</span>
+              <span class="cstat-val">80002</span>
+            </div>
+            <div class="cstat-box">
+              <span class="cstat-label">Solidity Compiler</span>
+              <span class="cstat-val">v0.8.20</span>
+            </div>
+            <div class="cstat-box">
+              <span class="cstat-label">Contract Address</span>
+              <span class="cstat-val text-mono" id="cstatAddress">0xF2E246BB76DF876Cef8b38ae84130F4F55De395b</span>
+            </div>
+          </div>
+
+          <div class="code-viewer">
+            <div class="code-viewer-header">
+              <span>MatchRegistry.sol</span>
+              <button class="btn-copy-code" id="btnCopySolidity"><i class="fa-regular fa-copy"></i> Copy Solidity</button>
+            </div>
+            <pre><code class="solidity-code" id="solidityCodeDisplay">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract MatchRegistry {
+    struct MatchRecord {
+        bytes32 imageHash;          // SHA-256 of original input image
+        bytes32 encodingHash;       // SHA-256 of 512-d face embedding
+        string matchUrl;            // Matched social post / candidate source URL
+        uint256 similarityScoreBps; // Similarity score in basis points (e.g. 9850 = 98.50%)
+        uint256 timestamp;          // Block timestamp when match was recorded
+        address recordedBy;         // Address that submitted the verification record
+    }
+
+    mapping(bytes32 => MatchRecord) public records;
+    bytes32[] public recordedHashes;
+
+    event MatchRecorded(
+        bytes32 indexed imageHash,
+        bytes32 indexed encodingHash,
+        string matchUrl,
+        uint256 similarityScoreBps,
+        uint256 timestamp,
+        address indexed recordedBy
+    );
+
+    function recordMatch(
+        bytes32 _imageHash,
+        bytes32 _encodingHash,
+        string calldata _matchUrl,
+        uint256 _similarityScoreBps
+    ) external {
+        require(_imageHash != bytes32(0), "Invalid image hash");
+        require(bytes(_matchUrl).length > 0, "Match URL cannot be empty");
+        require(records[_imageHash].timestamp == 0, "Record already exists");
+
+        records[_imageHash] = MatchRecord({
+            imageHash: _imageHash,
+            encodingHash: _encodingHash,
+            matchUrl: _matchUrl,
+            similarityScoreBps: _similarityScoreBps,
+            timestamp: block.timestamp,
+            recordedBy: msg.sender
+        });
+        recordedHashes.push(_imageHash);
+        emit MatchRecorded(_imageHash, _encodingHash, _matchUrl, _similarityScoreBps, block.timestamp, msg.sender);
+    }
+
+    function getMatch(bytes32 _imageHash) external view returns (MatchRecord memory) {
+        require(records[_imageHash].timestamp > 0, "No record found");
+        return records[_imageHash];
+    }
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Settings Modal -->
+  <div class="modal-backdrop" id="settingsModal" style="display: none;">
+    <div class="modal-box glass-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-sliders"></i> Pipeline Engine Settings</h3>
+        <button class="btn-close-modal" id="closeSettingsBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label class="input-label" for="serpApiKeyInput">
+            <i class="fa-solid fa-key" style="color:var(--accent-cyan); margin-right:0.35rem;"></i>
+            SerpApi Key (Google Lens Live Reverse Search)
+          </label>
+          <input type="password" id="serpApiKeyInput" class="custom-input" placeholder="Paste your SerpApi Key here...">
+          <span style="font-size:0.75rem; color:var(--text-dim); display:block; margin-top:0.35rem;">
+            Enables full Google Lens reverse image search across all public web and social posts. Get a free API key at <a href="https://serpapi.com" target="_blank" style="color:var(--accent-cyan);">serpapi.com</a>.
+          </span>
+        </div>
+        <div class="modal-actions" style="display:flex; justify-content:flex-end; gap:0.75rem;">
+          <button class="btn-secondary" id="cancelSettingsBtn">Cancel</button>
+          <button class="btn-gradient-primary" id="saveSettingsBtn"><i class="fa-solid fa-check"></i> Save Settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
